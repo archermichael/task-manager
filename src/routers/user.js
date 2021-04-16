@@ -29,8 +29,9 @@ router.post('/users', async (req, res) => {
         await user.save()
         sendWelcomeEmail(user.email, user.name)
         const token = await user.generateAuthToken()
-        res.cookie('auth_token', token)
-        res.sendFile(path.resolve(__dirname, '..', 'views', 'tasks.html'))
+        res.status(201).send({ user, token })
+        // res.cookie('auth_token', token)
+        // res.sendFile(path.resolve(__dirname, '..', 'views', 'tasks.html'))
     } catch (e) {
         res.status(400).send(e)
     }
@@ -41,8 +42,9 @@ router.post('/users/login', async (req, res) => {
     try {
         const user = await User.findByCredentials(req.body.email, req.body.password)
         const token = await user.generateAuthToken()
-        res.cookie('auth_token', token)
-        res.sendFile(path.resolve(__dirname, '..', 'views', 'tasks.html'))
+        res.send({ user, token })
+        // res.cookie('auth_token', token)
+        // res.sendFile(path.resolve(__dirname, '..', 'views', 'tasks.html'))
     } catch (e) {
         res.status(400).send()
     }
