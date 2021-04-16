@@ -15,6 +15,6 @@ app.use(cookieParser())
 app.use(userRouter)
 app.use(taskRouter)
 
-app.listen(process.env.PORT, () => {
+app.listen(port, () => {
     console.log('Server is up on port ' + port)
 })
