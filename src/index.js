@@ -1,5 +1,5 @@
 const express = require('express')
-const cookieParse = require('cookie-parser')
+const cookieParser = require('cookie-parser')
 require('./db/mongoose')
 
 const userRouter = require('./routers/user')
